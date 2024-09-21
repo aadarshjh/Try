@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VITConnect - Mess Menu</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #0d6efd;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        h1::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background-color: #0d6efd;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -10px;
+        }
+
+        .button-container {
+            margin-bottom: 20px;
+        }
+
+        .select-menu {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            width: 200px;
+            margin: 0 10px;
+            font-size: 1rem;
+        }
+
+        .day-menu {
+            display: none;
+            margin-top: 20px;
+            text-align: left;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-header {
+            font-weight: bold;
+            margin-top: 15px;
+            color: #0d6efd;
+        }
+
+        footer {
+            margin-top: 40px;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #0d6efd;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 1rem;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Mess Menu</h1>
+
+    <div class="button-container">
+        <select id="daySelect" class="select-menu">
+            <option value="">Select Day</option>
+            <option value="1">Day 1</option>
+            <option value="2">Day 2</option>
+            <option value="3">Day 3</option>
+            <option value="4">Day 4</option>
+            <option value="5">Day 5</option>
+            <!-- Add more days up to 30 -->
+        </select>
+
+        <select id="messType" class="select-menu">
+            <option value="">Select Mess Type</option>
+            <option value="veg">Vegetarian</option>
+            <option value="nonVeg">Non-Vegetarian</option>
+            <option value="special">Special</option>
+        </select>
+
+        <button class="button" onclick="showMenu()">Show Menu</button>
+    </div>
+
+    <div id="menuDisplay" class="day-menu">
+        <div id="menuBreakfast" class="menu-header"></div>
+        <div id="menuLunch" class="menu-header"></div>
+        <div id="menuSnacks" class="menu-header"></div>
+        <div id="menuDinner" class="menu-header"></div>
+    </div>
+
+    <footer>
+        © 2024 VITConnect. All rights reserved.
+    </footer>
+</div>
+
+<script>
+    const menuData = {
+        1: {
+            veg: {
+                breakfast: "Vegetable Upma",
+                lunch: "Dal Tadka & Rice",
+                snacks: "Samosa",
+                dinner: "Paneer Butter Masala & Roti"
+            },
+            nonVeg: {
+                breakfast: "Egg Omelette",
+                lunch: "Chicken Curry & Rice",
+                snacks: "Fish Fry",
+                dinner: "Mutton Biryani"
+            },
+            special: {
+                breakfast: "Pancakes",
+                lunch: "Cheese Pasta",
+                snacks: "Fruit Salad",
+                dinner: "Exotic Salad"
+            }
+        },
+        2: {
+            veg: {
+                breakfast: "Idli & Chutney",
+                lunch: "Chana Masala & Rice",
+                snacks: "Vegetable Pakora",
+                dinner: "Aloo Gobi & Chapati"
+            },
+            nonVeg: {
+                breakfast: "Chicken Sausage",
+                lunch: "Fish Curry & Rice",
+                snacks: "Chicken Nuggets",
+                dinner: "Prawn Fried Rice"
+            },
+            special: {
+                breakfast: "French Toast",
+                lunch: "Risotto",
+                snacks: "Cheese Platter",
+                dinner: "Grilled Vegetables"
+            }
+        },
+        // Add more data for Days 3 to 30
+    };
+
+    function showMenu() {
+        const day = document.getElementById('daySelect').value;
+        const type = document.getElementById('messType').value;
+        const menuDisplay = document.getElementById('menuDisplay');
+
+        if (day && type) {
+            const selectedMenu = menuData[day][type];
+            document.getElementById('menuBreakfast').innerText = `Breakfast: ${selectedMenu.breakfast}`;
+            document.getElementById('menuLunch').innerText = `Lunch: ${selectedMenu.lunch}`;
+            document.getElementById('menuSnacks').innerText = `Snacks: ${selectedMenu.snacks}`;
+            document.getElementById('menuDinner').innerText = `Dinner: ${selectedMenu.dinner}`;
+            menuDisplay.style.display = 'block';
+        } else {
+            menuDisplay.style.display = 'none';
+        }
+    }
+</script>
+
+</body>
+</html>

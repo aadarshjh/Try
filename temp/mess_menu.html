@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mess Menu</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to separate CSS -->
+</head>
+<body>
+    <div class="header">
+        <h1>Mess Menu</h1>
+    </div>
+    <label for="daySelect">Select Day:</label>
+    <div class="dropdown-container">
+        <select id="daySelect">
+            <option value="">-- Select a Day --</option>
+            <option value="Day 1">Day 1</option>
+            <option value="Day 2">Day 2</option>
+            <!-- Add more days as needed -->
+        </select>
+    </div>
+    <div class="menu-selector">
+        <button id="vegMenuBtn">Veg Menu</button>
+        <button id="nonVegMenuBtn">Non-Veg Menu</button>
+        <button id="specialMenuBtn">Special Menu</button>
+    </div>
+
+
+    <div class="navigation">
+        <button id="prevBtn">Previous</button>
+        <button id="nextBtn">Next</button>
+    </div>
+
+    <div id="menuDisplay" class="menu-display"></div>
+
+    <script src="script.js"></script> <!-- Link to separate JavaScript -->
+</body>
+</html>

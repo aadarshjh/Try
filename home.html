@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VITConnect - Homepage</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #f5f7fa, #e0eafc);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #0d6efd;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        h1::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background-color: #0d6efd;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -10px;
+        }
+
+        .intro {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 40px;
+        }
+
+        .links-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .link-card {
+            background-color: #f8f9fa;
+            padding: 30px;
+            margin: 15px;
+            width: 260px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid transparent;
+            position: relative;
+        }
+
+        .link-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(13, 110, 253, 0.1);
+            border-radius: 12px;
+            z-index: -1;
+            transition: opacity 0.3s;
+            opacity: 0;
+        }
+
+        .link-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .link-card:hover::before {
+            opacity: 1;
+        }
+
+        .link-card a {
+            text-decoration: none;
+            color: #0d6efd;
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+            transition: color 0.3s;
+        }
+
+        .link-card a:hover {
+            color: #0056b3;
+        }
+
+        .link-card h3 {
+            margin: 0;
+            color: #333;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .link-card p {
+            margin-top: 10px;
+            color: #666;
+            font-size: 1rem;
+        }
+
+        footer {
+            margin-top: 40px;
+            color: #555;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Welcome to VITConnect</h1>
+    <p class="intro">Your one-stop platform for managing campus life at VIT. Navigate through the different sections to explore events, register for clubs, check the mess menu, and more!</p>
+
+    <div class="links-container">
+        <!-- Mess Menu Link -->
+        <div class="link-card">
+            <h3>Mess Menu</h3>
+            <p>Check out the latest mess menu and plan your meals for the week!</p>
+            <a href="mess_menu.html">View Mess Menu</a>
+        </div>
+
+        <!-- Club Registration Link -->
+        <div class="link-card">
+            <h3>Club Registration</h3>
+            <p>Join your favorite clubs and explore extracurricular activities.</p>
+            <a href="clubs.html">Register for Clubs</a>
+        </div>
+
+        <!-- Events Page Link -->
+        <div class="link-card">
+            <h3>Events</h3>
+            <p>Stay updated on upcoming events and activities happening on campus.</p>
+            <a href="events_final.html">View Events</a>
+        </div>
+
+        <!-- Campus Directions Link -->
+        <div class="link-card">
+            <h3>Campus Directions</h3>
+            <p>Navigate through the campus with ease using the campus directions feature.</p>
+            <a href="maps_final.html">Get Directions</a>
+        </div>
+
+        <!-- About Us Link -->
+        <div class="link-card">
+            <h3>About Us</h3>
+            <p>Learn about our vision and mission.</p>
+            <a href="about_final.html">Go to About Us</a>
+        </div>
+
+        <!-- FAQ Link -->
+        <div class="link-card">
+            <h3>FAQ</h3>
+            <p>Find answers to commonly asked questions.</p>
+            <a href="faq_final.html">View FAQs</a>
+        </div>
+
+        <!-- Shops Link -->
+        <div class="link-card">
+            <h3>Shops</h3>
+            <p>Explore campus shops and services available for students.</p>
+            <a href="shops.html">View Shops</a>
+        </div>
+    </div>
+
+    <footer>
+        © 2024 VITConnect. All rights reserved.
+    </footer>
+</div>
+
+</body>
+</html>

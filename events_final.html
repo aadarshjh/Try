@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VITConnect - Events</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #f5f7fa, #e0eafc);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #0d6efd;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        h1::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background-color: #0d6efd;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -10px;
+        }
+
+        .intro {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 40px;
+        }
+
+        .filter-container {
+            margin: 20px 0;
+        }
+
+        .filter-container input {
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            transition: border-color 0.3s;
+        }
+
+        .filter-container input:focus {
+            border-color: #0d6efd;
+            outline: none;
+        }
+
+        .events-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+        }
+
+        .event-card {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 300px;
+            text-align: left;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .event-card h3 {
+            margin: 0;
+            color: #333;
+            font-size: 1.5rem;
+        }
+
+        .event-card p {
+            margin: 10px 0;
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .event-card .date {
+            font-weight: bold;
+            color: #0d6efd;
+        }
+
+        footer {
+            margin-top: 40px;
+            color: #555;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Upcoming Events</h1>
+    <p class="intro">Stay updated on upcoming events and activities happening on campus. Join us and participate in exciting experiences!</p>
+
+    <div class="filter-container">
+        <input type="text" id="searchBox" placeholder="Search for events..." onkeyup="filterEvents()">
+        <label for="fromDate">From:</label>
+        <input type="date" id="fromDate" onchange="filterEvents()">
+        <label for="toDate">To:</label>
+        <input type="date" id="toDate" onchange="filterEvents()">
+    </div>
+
+    <div class="events-container" id="eventsContainer">
+        <!-- Event 1 -->
+        <div class="event-card" data-date="2024-03-15">
+            <h3>Tech Symposium 2024</h3>
+            <p class="date">Date: March 15, 2024</p>
+            <p>Join industry experts as they discuss the latest trends in technology.</p>
+        </div>
+
+        <!-- Event 2 -->
+        <div class="event-card" data-date="2024-04-20">
+            <h3>Cultural Fest</h3>
+            <p class="date">Date: April 20, 2024</p>
+            <p>Celebrate diversity with performances, food, and art from various cultures.</p>
+        </div>
+
+        <!-- Event 3 -->
+        <div class="event-card" data-date="2024-05-10">
+            <h3>Sports Day</h3>
+            <p class="date">Date: May 10, 2024</p>
+            <p>Participate in various sports competitions and show your skills!</p>
+        </div>
+
+        <!-- Event 4 -->
+        <div class="event-card" data-date="2024-06-05">
+            <h3>Hackathon 2024</h3>
+            <p class="date">Date: June 5-6, 2024</p>
+            <p>Join us for a 24-hour hackathon with prizes and networking opportunities.</p>
+        </div>
+
+        <!-- Event 5 -->
+        <div class="event-card" data-date="2024-07-15">
+            <h3>Art Exhibition</h3>
+            <p class="date">Date: July 15-20, 2024</p>
+            <p>Experience creativity through the works of talented student artists.</p>
+        </div>
+
+        <!-- Event 6 -->
+        <div class="event-card" data-date="2024-08-25">
+            <h3>Job Fair</h3>
+            <p class="date">Date: August 25, 2024</p>
+            <p>Meet potential employers and explore career opportunities.</p>
+        </div>
+    </div>
+
+    <footer>
+        © 2024 VITConnect. All rights reserved.
+    </footer>
+</div>
+
+<script>
+    function filterEvents() {
+        const searchValue = document.getElementById('searchBox').value.toLowerCase();
+        const fromDate = document.getElementById('fromDate').value;
+        const toDate = document.getElementById('toDate').value;
+        const events = document.querySelectorAll('.event-card');
+
+        events.forEach(event => {
+            const eventTitle = event.querySelector('h3').innerText.toLowerCase();
+            const eventDate = event.getAttribute('data-date');
+
+            const matchesSearch = eventTitle.includes(searchValue);
+            const matchesDate = (!fromDate || eventDate >= fromDate) && (!toDate || eventDate <= toDate);
+
+            if (matchesSearch && matchesDate) {
+                event.style.display = 'block';
+            } else {
+                event.style.display = 'none';
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

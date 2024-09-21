@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VITConnect - FAQ</title>
+    <!-- Link to external CSS file -->
+    <!-- <link rel="stylesheet" href="styles1.css"> -->
+    <style>
+        /* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.faq-section {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.faq-item {
+    margin-bottom: 15px;
+}
+
+.faq-question {
+    background-color: #0a74da;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    font-size: 18px;
+    border-radius: 5px;
+    margin: 0;
+    transition: background-color 0.3s;
+}
+
+.faq-question:hover {
+    background-color: #064a9d;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+    background-color: #f1f1f1;
+    padding: 0 15px;
+    border-radius: 5px;
+}
+
+.faq-answer p {
+    padding: 15px;
+    margin: 0;
+    color: #333;
+    font-size: 16px;
+}
+
+/* Add FAQ expand icon */
+.faq-question::after {
+    content: '\002B'; /* plus symbol */
+    float: right;
+    font-size: 18px;
+}
+
+.faq-question.active::after {
+    content: '\2212'; /* minus symbol */
+}
+/* Form Styling */
+.question-form {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.question-form input, .question-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.question-form button {
+    background-color: #0a74da;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.question-form button:hover {
+    background-color: #064a9d;
+}
+
+.confirmation {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #d4edda;
+    color: #155724;
+    border-radius: 5px;
+    display: none;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .faq-question {
+        font-size: 16px;
+    }
+
+    .faq-answer {
+        font-size: 14px;
+    }
+}
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Frequently Asked Questions</h1>
+
+    <!-- Static FAQ Section -->
+    <div class="faq-section">
+        <div class="faq-item">
+            <h3 class="faq-question">What is OD?</h3>
+            <div class="faq-answer">
+                <p>OD is On-Duty. It is given to if you attend an event to make sure your attendance is not affected.</p>
+            </div>
+        </div>
+    
+        <div class="faq-item">
+            <h3 class="faq-question">Who can use VITConnect?</h3>
+            <div class="faq-answer">
+                <p>VITConnect is available to all VIT students, faculty, and staff members. You just need a valid VIT ID to sign up and access the features of the platform.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <h3 class="faq-question">Who can use VITConnect?</h3>
+            <div class="faq-answer">
+                <p>VITConnect is available to all VIT students, faculty, and staff members. You just need a valid VIT ID to sign up and access the features of the platform.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <h3 class="faq-question">Who can use VITConnect?</h3>
+            <div class="faq-answer">
+                <p>VITConnect is available to all VIT students, faculty, and staff members. You just need a valid VIT ID to sign up and access the features of the platform.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <h3 class="faq-question">Who can use VITConnect?</h3>
+            <div class="faq-answer">
+                <p>VITConnect is available to all VIT students, faculty, and staff members. You just need a valid VIT ID to sign up and access the features of the platform.</p>
+            </div>
+        </div>
+
+        <!-- Additional FAQ items can be hardcoded here -->
+    </div>
+
+    <!-- Question Submission Form -->
+    <div class="question-form">
+        <h2>Submit Your Question</h2>
+        <form id="questionForm">
+            <input type="text" id="questionInput" placeholder="Enter your question" required>
+            <textarea id="detailsInput" placeholder="Provide more details (optional)" rows="4"></textarea>
+            <button type="submit">Submit Question</button>
+        </form>
+
+        <div class="confirmation" id="confirmationMessage">
+            Thank you for submitting your question! We will review it and update the FAQ accordingly.
+        </div>
+    </div>
+</div>
+
+<script>
+    // Collapsible FAQ functionality
+    const faqQuestions = document.querySelectorAll('.faq-question');
+
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+            question.classList.toggle('active');
+
+            const answer = question.nextElementSibling;
+            if (answer.style.maxHeight) {
+                answer.style.maxHeight = null;
+            } else {
+                answer.style.maxHeight = answer.scrollHeight + "px";
+            }
+        });
+    });
+
+    // Question form submission handling
+    document.getElementById('questionForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Display confirmation message
+        document.getElementById('confirmationMessage').style.display = 'block';
+
+        // Clear form inputs
+        document.getElementById('questionInput').value = '';
+        document.getElementById('detailsInput').value = '';
+    });
+</script>
+
+</body>
+</html>

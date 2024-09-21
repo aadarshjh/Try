@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club Registration</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header Styles */
+        h1 {
+            text-align: center;
+            color: #0d6efd;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        h1::after {
+            content: '';
+            width: 60px;
+            height: 4px;
+            background-color: #0d6efd;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -10px;
+        }
+
+        p {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+
+        /* Input Styles */
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        select:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 8px rgba(13, 110, 253, 0.3);
+            outline: none;
+        }
+
+        /* Button Styles */
+        .button {
+            margin-top: 25px;
+            padding: 15px;
+            background-color: #0d6efd;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            width: 100%;
+            text-align: center;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Club Description Styles */
+        .club-description {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-left: 4px solid #0d6efd;
+            border-radius: 8px;
+            color: #333;
+            font-size: 1rem;
+            display: none; /* Initially hidden */
+        }
+
+        /* Popup Styles */
+        .popup {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .close-button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .close-button:hover {
+            background-color: #c82333;
+        }
+
+        /* Table Styles */
+        .registration-table {
+            width: 100%;
+            margin-top: 30px;
+            border-collapse: collapse;
+        }
+
+        .registration-table th, .registration-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .registration-table th {
+            background-color: #0d6efd;
+            color: white;
+        }
+
+        .registration-table td {
+            background-color: #f8f9fa;
+        }
+
+        .open {
+            color: green;
+            font-weight: bold;
+        }
+
+        .closed {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Join a Club</h1>
+    <p>Fill out the form to register for your preferred club. Choose wisely!</p>
+
+    <form id="registrationForm">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="regno">Registration No:</label>
+        <input type="text" id="regno" name="regno" required>
+        
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="club">Select Your Club:</label>
+        <select id="club" name="club" onchange="displayDescription()" required>
+            <option value="">-- Select a Club --</option>
+            <option value="Tech Club">Tech Club</option>
+            <option value="Cultural Society">Cultural Society</option>
+            <option value="Developer's Guild">Developer's Guild</option>
+            <option value="Art Club">Art Club</option>
+            <option value="Music Society">Music Society</option>
+            <option value="Robotics Club">Robotics Club</option>
+            <option value="Photography Club">Photography Club</option>
+            <option value="Entrepreneurship Cell">Entrepreneurship Cell</option>
+            <option value="Debate Club">Debate Club</option>
+            <option value="Literature Society">Literature Society</option>
+        </select>
+
+        <!-- Club Description Section -->
+        <div id="clubDescription" class="club-description"></div>
+        
+        <button type="button" class="button" onclick="submitRegistration()">Register Now</button>
+    </form>
+
+    <!-- Table showing registration status of clubs -->
+    <table class="registration-table">
+        <thead>
+            <tr>
+                <th>Club Name</th>
+                <th>Registration Status</th>
+            </tr>
+        </thead>
+        <tbody id="clubStatusTable"></tbody>
+    </table>
+</div>
+
+<!-- Popup for status message -->
+<div class="popup" id="registrationPopup">
+    <div class="popup-content">
+        <h2>Registration Status</h2>
+        <p id="popupMessage"></p>
+        <button class="close-button" onclick="closePopup()">Close</button>
+    </div>
+</div>
+
+<script>
+    const openClubs = ['Tech Club', 'Developer\'s Guild', 'Art Club', 'Photography Club', 'Entrepreneurship Cell'];
+    
+    const clubDescriptions = {
+        'Tech Club': 'A community of tech enthusiasts where you can collaborate on projects, attend workshops, and stay updated with the latest tech trends.',
+        'Cultural Society': 'Celebrate and engage with various cultural activities. From drama to dance, this club promotes diversity and artistic expression.',
+        'Developer\'s Guild': 'If coding is your passion, join the Developer\'s Guild to hone your programming skills through competitions and hackathons.',
+        'Art Club': 'A haven for creative minds to explore different mediums of art and express themselves through workshops, exhibits, and events.',
+        'Music Society': 'Whether you play an instrument or sing, the Music Society brings together musicians to create, perform, and appreciate music.',
+        'Robotics Club': 'Explore the fascinating world of robotics through hands-on projects, competitions, and collaborative learning experiences.',
+        'Photography Club': 'For those who see the world through a lens, the Photography Club offers workshops, outings, and opportunities to showcase your photography skills.',
+        'Entrepreneurship Cell': 'Nurture your entrepreneurial spirit by joining the E-Cell, where you can work on startups, attend talks by successful entrepreneurs, and develop business skills.',
+        'Debate Club': 'If you love to discuss, argue, and explore diverse viewpoints, the Debate Club will sharpen your skills in public speaking and critical thinking.',
+        'Literature Society': 'For lovers of literature, this society offers a space to discuss books, attend author talks, and explore creative writing.'
+    };
+
+    function displayDescription() {
+        const club = document.getElementById('club').value;
+        const descriptionDiv = document.getElementById('clubDescription');
+
+        if (clubDescriptions[club]) {
+            descriptionDiv.style.display = 'block';
+            descriptionDiv.innerText = clubDescriptions[club];
+        } else {
+            descriptionDiv.style.display = 'none';
+        }
+    }
+
+    function submitRegistration() {
+        const name = document.getElementById('name').value;
+        const regno = document.getElementById('regno').value;
+        const email = document.getElementById('email').value;
+        const club = document.getElementById('club').value;
+
+        if (name && regno && email && club) {
+            if (openClubs.includes(club)) {
+                document.getElementById('popupMessage').innerText = `Congratulations, ${name}! You have successfully registered for the ${club}.`;
+            } else {
+                document.getElementById('popupMessage').innerText = `Sorry, ${name}. Registration for the ${club} is currently closed.`;
+            }
+            document.getElementById('registrationPopup').style.display = 'flex';
+        }
+    }
+
+    function closePopup() {
+        document.getElementById('registrationPopup').style.display = 'none';
+    }
+
+    // Populate the registration status table
+    function populateClubStatusTable() {
+        const tableBody = document.getElementById('clubStatusTable');
+        const clubs = Object.keys(clubDescriptions);
+
+        clubs.forEach(club => {
+            const row = document.createElement('tr');
+            const clubNameCell = document.createElement('td');
+            clubNameCell.textContent = club;
+
+            const statusCell = document.createElement('td');
+            statusCell.textContent = openClubs.includes(club) ? 'Open' : 'Closed';
+            statusCell.className = openClubs.includes(club) ? 'open' : 'closed';
+
+            row.appendChild(clubNameCell);
+            row.appendChild(statusCell);
+            tableBody.appendChild(row);
+        });
+    }
+
+    // Call the function to populate the table when the page loads
+    window.onload = populateClubStatusTable;
+</script>
+
+</body>
+</html>

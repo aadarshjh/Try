@@ -1,0 +1,124 @@
+/* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.faq-section {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.faq-item {
+    margin-bottom: 15px;
+}
+
+.faq-question {
+    background-color: #0a74da;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    font-size: 18px;
+    border-radius: 5px;
+    margin: 0;
+    transition: background-color 0.3s;
+}
+
+.faq-question:hover {
+    background-color: #064a9d;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+    background-color: #f1f1f1;
+    padding: 0 15px;
+    border-radius: 5px;
+}
+
+.faq-answer p {
+    padding: 15px;
+    margin: 0;
+    color: #333;
+    font-size: 16px;
+}
+
+/* Add FAQ expand icon */
+.faq-question::after {
+    content: '\002B'; /* plus symbol */
+    float: right;
+    font-size: 18px;
+}
+
+.faq-question.active::after {
+    content: '\2212'; /* minus symbol */
+}
+/* Form Styling */
+.question-form {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.question-form input, .question-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.question-form button {
+    background-color: #0a74da;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.question-form button:hover {
+    background-color: #064a9d;
+}
+
+.confirmation {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #d4edda;
+    color: #155724;
+    border-radius: 5px;
+    display: none;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .faq-question {
+        font-size: 16px;
+    }
+
+    .faq-answer {
+        font-size: 14px;
+    }
+}
